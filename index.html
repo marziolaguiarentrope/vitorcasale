@@ -14,38 +14,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
-    <!-- AOS (Animate On Scroll) Library for Fade Effects -->
+    <!-- AOS (Animate On Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Custom Styles & Configuration -->
+    <!-- Custom Styles & Tailwind Config -->
     <style>
-        /* Parallax Background */
-        #dynamic-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        .content-section {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(10, 25, 47, 0.85); /* Semi-transparent background for content */
-        }
-        
-        #inicio {
-            background-color: transparent; /* Hero section is fully transparent to show background */
-        }
-
-        .glow-on-hover:hover {
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4), 0 0 8px rgba(100, 255, 218, 0.2);
-        }
-
+        #dynamic-background { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+        .content-section { position:relative; z-index:2; background-color: rgba(10,25,47,0.85); }
+        #inicio { background-color: transparent; }
+        .glow-on-hover:hover { box-shadow: 0 0 20px rgba(100,255,218,0.4), 0 0 8px rgba(100,255,218,0.2); }
         .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
     </style>
     <script>
@@ -74,37 +54,28 @@
 
 <canvas id="dynamic-background"></canvas>
 
-<!-- Header & Navigation -->
+<!-- ===== Header: menu centralizado ===== -->
 <header class="bg-dark-navy/80 backdrop-blur-lg sticky top-0 z-50 shadow-lg shadow-black/20">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-        
-        <!-- Logo -->
-        <a href="#" class="flex items-center">
-            <img src="teste (4).png" alt="Entrope Logo" 
-                 class="h-12 w-auto" 
-                 onerror="this.onerror=null; this.src='https://placehold.co/150x40/0b1324/3b82f6?text=Entrope';">
-        </a>
-        
-        <!-- Menu Desktop -->
+    <div class="container mx-auto px-6 py-4 relative flex items-center justify-center">
+        <!-- Menu Desktop (centralizado) -->
         <nav class="hidden md:flex space-x-8">
             <a href="#inicio" class="hover:text-cyan-accent font-semibold transition duration-300">Início</a>
             <a href="#sobre" class="hover:text-cyan-accent font-semibold transition duration-300">Sobre</a>
             <a href="#terapia" class="hover:text-cyan-accent font-semibold transition duration-300">Terapia</a>
             <a href="#contato" class="hover:text-cyan-accent font-semibold transition duration-300">Contato</a>
         </nav>
-        
-        <!-- Botão Mobile -->
-        <button id="mobile-menu-button" class="md:hidden text-cyan-accent">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor">
+
+        <!-- Botão Mobile (fica no canto direito) -->
+        <button id="mobile-menu-button" aria-label="Abrir menu" class="md:hidden text-cyan-accent absolute right-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M4 6h16M4 12h16m-7 6h7"/>
             </svg>
         </button>
     </div>
 
-    <!-- Menu Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden bg-light-navy">
+    <!-- Menu Mobile (centralizado) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-light-navy border-t border-slate/20">
         <a href="#inicio" class="block text-center py-3 px-4 text-sm hover:bg-dark-navy/50">Início</a>
         <a href="#sobre" class="block text-center py-3 px-4 text-sm hover:bg-dark-navy/50">Sobre</a>
         <a href="#terapia" class="block text-center py-3 px-4 text-sm hover:bg-dark-navy/50">Terapia</a>
@@ -112,20 +83,37 @@
     </div>
 </header>
 
-
 <main>
-    <!-- Section: Homepage -->
-    <section id="inicio" class="min-h-screen flex items-center justify-center text-center content-section">
+    <!-- ===== Hero: logo acima do título ===== -->
+    <section id="inicio" class="min-h-screen flex flex-col items-center justify-center text-center content-section">
+        <!-- Logo -->
+        <img src="teste (4).png" alt="Logo Vitor Casale"
+             class="h-20 w-auto mb-6"
+             onerror="this.onerror=null; this.src='https://placehold.co/180x50/0b1324/3b82f6?text=Logo';">
+
         <div class="container mx-auto px-6" data-aos="fade-up">
-            <h1 class="font-display text-4xl md:text-6xl font-bold text-white-text leading-tight tracking-wide">Saúde mental não é luxo, é necessidade.</h1>
-            <p class="mt-6 max-w-2xl mx-auto text-lg text-slate">Encontre um caminho para uma vida mais leve e produtiva. Através da Terapia Cognitivo-Comportamental, ajudo você a superar a ansiedade e a construir relacionamentos mais saudáveis.</p>
-            <a href="#contato" class="mt-10 inline-block bg-cyan-accent/10 text-cyan-accent border border-cyan-accent font-bold font-heading py-4 px-10 rounded-lg hover:bg-cyan-accent/20 transition duration-300 transform hover:scale-105">
+            <h1 class="font-display text-4xl md:text-6xl font-bold text-white-text leading-tight tracking-wide">
+                Saúde mental não é luxo, é necessidade.
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-slate">
+                Encontre um caminho para uma vida mais leve e produtiva. Através da Terapia Cognitivo-Comportamental,
+                ajudo você a superar a ansiedade e a construir relacionamentos mais saudáveis.
+            </p>
+            <a href="#contato"
+               class="mt-10 inline-block bg-cyan-accent/10 text-cyan-accent border border-cyan-accent font-bold font-heading py-4 px-10 rounded-lg hover:bg-cyan-accent/20 transition duration-300 transform hover:scale-105">
                 Agende sua avaliação
             </a>
+
             <div class="mt-16 flex justify-center items-center space-x-8 text-white-text" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-center"><p class="font-bold">CRP 06/218150</p><p class="text-sm text-slate">Psicólogo Credenciado</p></div>
+                <div class="text-center">
+                    <p class="font-bold">CRP 06/218150</p>
+                    <p class="text-sm text-slate">Psicólogo Credenciado</p>
+                </div>
                 <div class="border-l h-10 border-slate/50"></div>
-                <div class="text-center"><p class="font-bold">Especialista em TCC</p><p class="text-sm text-slate">Pós-graduação</p></div>
+                <div class="text-center">
+                    <p class="font-bold">Especialista em TCC</p>
+                    <p class="text-sm text-slate">Pós-graduação</p>
+                </div>
             </div>
         </div>
     </section>
@@ -179,10 +167,34 @@
             <h2 class="font-display text-3xl md:text-4xl font-bold text-white-text text-center mb-4" data-aos="fade-up">Vamos conversar?</h2>
             <p class="text-center text-lg text-slate max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">Dê o primeiro passo para o seu bem-estar. Agende seu horário sem compromisso!</p>
             <div class="max-w-xl mx-auto bg-light-navy p-8 md:p-10 rounded-xl shadow-2xl border border-slate/20" data-aos="fade-up" data-aos-delay="200">
-                <form><div class="mb-5"><label for="name" class="block text-light-slate font-bold mb-2">Nome</label><input type="text" id="name" name="name" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required></div><div class="mb-5"><label for="email" class="block text-light-slate font-bold mb-2">Email</label><input type="email" id="email" name="email" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required></div><div class="mb-8"><label for="message" class="block text-light-slate font-bold mb-2">Mensagem</label><textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required></textarea></div><div class="text-center"><button type="submit" class="w-full bg-cyan-accent/10 text-cyan-accent border border-cyan-accent font-bold font-heading py-4 px-8 rounded-lg hover:bg-cyan-accent/20 transition duration-300 transform hover:scale-105">Enviar Mensagem</button></div></form>
-                <div class="text-center mt-6"><p class="text-slate">ou, se preferir</p><a href="https://wa.me/55119XXXXXXXX?text=Olá,%20Vitor!%20Gostaria%20de%20agendar%20uma%20avaliação." target="_blank" class="mt-4 inline-block bg-green-500 text-white font-bold font-heading py-3 px-8 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center max-w-xs mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.654 4.288 1.902 6.043l-1.465 5.352 5.525-1.443z"/></svg>Chamar no WhatsApp</a></div>
+                <form>
+                    <div class="mb-5">
+                        <label for="name" class="block text-light-slate font-bold mb-2">Nome</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required>
+                    </div>
+                    <div class="mb-5">
+                        <label for="email" class="block text-light-slate font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required>
+                    </div>
+                    <div class="mb-8">
+                        <label for="message" class="block text-light-slate font-bold mb-2">Mensagem</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-dark-navy border border-slate/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-accent text-white-text" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="w-full bg-cyan-accent/10 text-cyan-accent border border-cyan-accent font-bold font-heading py-4 px-8 rounded-lg hover:bg-cyan-accent/20 transition duration-300 transform hover:scale-105">Enviar Mensagem</button>
+                    </div>
+                </form>
+                <div class="text-center mt-6">
+                    <p class="text-slate">ou, se preferir</p>
+                    <a href="https://wa.me/55119XXXXXXXX?text=Olá,%20Vitor!%20Gostaria%20de%20agendar%20uma%20avaliação." target="_blank" class="mt-4 inline-block bg-green-500 text-white font-bold font-heading py-3 px-8 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center max-w-xs mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.654 4.288 1.902 6.043l-1.465 5.352 5.525-1.443z"/></svg>
+                        Chamar no WhatsApp
+                    </a>
+                </div>
             </div>
-            <div class="text-center mt-12 text-slate"><p><strong>Consultório:</strong> Rua Maestro Andrelino Viêira, 27, São Carlos, SP</p></div>
+            <div class="text-center mt-12 text-slate">
+                <p><strong>Consultório:</strong> Rua Maestro Andrelino Viêira, 27, São Carlos, SP</p>
+            </div>
         </div>
     </section>
 </main>
@@ -234,11 +246,9 @@
             this.vy = (Math.random() - 0.5) * 0.3;
             this.baseOpacity = Math.random() * 0.5 + 0.2;
         }
-
         update() {
             this.x += this.vx;
             this.y += this.vy;
-
             if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
         }
@@ -247,20 +257,16 @@
     function initParticles() {
         particles = [];
         let numParticles = Math.floor((window.innerWidth * window.innerHeight) / 9000);
-        for (let i = 0; i < numParticles; i++) {
-            particles.push(new Particle());
-        }
+        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
     }
 
     function handleConnections(networkOpacity) {
         if (networkOpacity < 0.05) return;
-
         for (let i = 0; i < particles.length; i++) {
             for (let j = i; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-
                 if (distance < 150) {
                     const lineOpacity = (1 - (distance / 150)) * 0.7 * networkOpacity;
                     ctx.beginPath();
@@ -278,12 +284,8 @@
         if (!terapiaSection) return;
         const rect = terapiaSection.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        
-        // Start transition when the top of the section is halfway up the screen
         const startPoint = windowHeight * 0.75;
-        // End transition when the top of the section is at the top of the screen
         const endPoint = windowHeight * 0.25;
-
         let progress = (startPoint - rect.top) / (startPoint - endPoint);
         transitionProgress = Math.max(0, Math.min(1, progress));
     }
@@ -295,7 +297,7 @@
         const starOpacity = 1 - transitionProgress;
         const networkOpacity = transitionProgress;
 
-        // Draw stars
+        // Stars
         if (starOpacity > 0.01) {
             particles.forEach(p => {
                 ctx.beginPath();
@@ -305,7 +307,7 @@
             });
         }
 
-        // Draw network
+        // Network
         if (networkOpacity > 0.01) {
             particles.forEach(p => {
                 ctx.beginPath();
@@ -319,11 +321,7 @@
         requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => {
-        setCanvasSize();
-        initParticles();
-    });
-    
+    window.addEventListener('resize', () => { setCanvasSize(); initParticles(); });
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     setCanvasSize();
